@@ -1,42 +1,29 @@
+import {search} from "./getData";
+
+const searchFunc = require('getData');
+
+
 function initEs() {
-  let link = "https://development.es.ap-southeast-1.aws.found.io:9243/product_sg_dev/_search?pretty=true";
-  let authorization = "Authorization:ApiKey YtMn0dk1SBqt_bmXUwxeOg"
   $('#es-search').on('keyup',function(){
     console.log('trigger search hear')
   })
 
-  $('#es-search').on('change',function () {
-    $.ajax({
-      method: "POST",
-      url: link,
-      dataType: "json",
-      crossDomain: true,
-      //type: 'json',
-      headers: {
-        "Authorization": "Basic XXXXXXXXX",
-        "Access-Control-Allow-Headers":link
-      },
-      data: {
-        "query": {
-          "match": {
-            "title": {"query":"dog dry fuud",
-              "fuzziness":2 }
-          }
-        },
-        "aggs": {
-          "categories.price": {
-            "terms": {
-              "field": "categories.price"
-            }
-          }
-        }
-      },
-      success: function(response) {
-        alert("success");
-        $('#new').html(response);
-      }
-    })}
-  )
+  $('#es-search').on('change', async function () {
+      let seachObject = {searchTerm:"dog",facets:[]}
+      let data = await search(seachObject);
+      let productlisst = data.hits.hits;
+      productlisst.forEach(product => {
+        let element = `<div class="single-search-product d-flex">
+                                <a href="#"><img src="${product.imageUrl}" alt=""></a>
+                                <div class="desc">
+                                    <a href="#" class="title">${product.title}</a>
+                                    <div class="price">${product.price}</div>
+                                </div>
+                            </div>`;
+
+        $('#products').append(element);
+      })
+    })
 }
 
 export {
