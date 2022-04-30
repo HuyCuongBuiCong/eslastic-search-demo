@@ -1,0 +1,5 @@
+
+*.ts
+*.md
+node_modules/
+node_modules/@discoveryjs/json-ext/CHANGELOG.md

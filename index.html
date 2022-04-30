@@ -8,12 +8,114 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="input-group mb-3">
     <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">@</span>
     </div>
     <input id='es-search' type="text" class="form-control" placeholder="Search..." aria-label="product" aria-describedby="basic-addon1">
 </div>
+<div class="row">
+    <div class="col-3">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-categories">
+                <div class="head">Browse Categories</div>
+                <ul class="main-categories">
+                    <li class="common-filter">
+                        <form action="#">
+                            <ul>
+                                {{#each categories}}
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">{{name}}<span> ({{Products.length}})</span></label></li>
+                                {{/each}}
+                            </ul>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-filter">
+                <div class="top-filter-head">Product Filters</div>
+                <div class="common-filter">
+                    <div class="head">Brands</div>
+                    <form action="#">
+                        <ul>
+                            {{#each brands}}
+                            <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">{{name}}<span> ({{Products.length}})</span></label></li>
+                            {{/each}}
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter">
+                    <div class="head">Color</div>
+                    <form action="#">
+                        <ul>
+                            {{#each colors}}
+                            <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">{{name}}<span> ({{ProductColors.length}})</span></label></li>
+                            {{/each}}
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter">
+                    <div class="head">Price</div>
+                    <div class="price-range-area">
+                        <div id="price-range"></div>
+                        <div class="value-wrapper d-flex">
+                            <div class="price">Price:</div>
+                            <span>$</span>
+                            <div id="lower-value"></div>
+                            <div class="to">to</div>
+                            <span>$</span>
+                            <div id="upper-value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+                <div class="sorting">
+                    <select>
+                        <option value="1">Default sorting</option>
+                        <option value="1">Default sorting</option>
+                        <option value="1">Default sorting</option>
+                    </select>
+                </div>
+                <div class="sorting mr-auto">
+                    <select>
+                        <option value="1">Show 12</option>
+                        <option value="1">Show 12</option>
+                        <option value="1">Show 12</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="input-group filter-bar-search">
+                        <input type="text" placeholder="Search">
+                        <div class="input-group-append">
+                            <button type="button"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Filter Bar -->
+
+    </div>
+
+</div>
+    <div class="col-9">
+        <section class="related-product-area">
+            <div class="container">
+                <div class="section-intro pb-60px">
+                    <p>Popular Item in the market</p>
+                    <h2>Top <span class="section-intro__style">Product</span></h2>
+                </div>
+                <div class="row mt-30" >
+                    <div class="single-search-product-wrapper" id="products"></div>
+                </div>
+            </div>
+        </section>
+        <!-- ================ top product area end ================= -->
+    </div>
+    <<div id="new">New</div>
 <script src="./dist/index.bundle.js"></script>
 </body>
 </html>
